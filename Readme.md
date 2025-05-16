@@ -26,11 +26,11 @@ This repository contains my solutions to various machine coding round problems c
 
 1. Navigate to the problem folder:
    ```bash
-   cd Chess-Move-Validator
+   cd Chess/src
    ```
 2. Compile and run:
     ```bash
-   javac -d out src/*.java
+   javac -d out *.java
    java -cp out Main
     ```
    Or, if using an IDE like IntelliJ or Eclipse, open the folder as a project and run the Main class.
