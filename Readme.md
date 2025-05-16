@@ -18,7 +18,7 @@ This repository contains my solutions to various machine coding round problems c
 
 | #  | Problem Name           | Problem Statement                           | Folder Link           |
 |----|------------------------|---------------------------------------------|------------------------|
-| 1  | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board | [`Chess-Move-Validator`](./Chess-Move-Validator) |
+| 1  | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board | [`Chess-Move-Validator`](./Chess) |
 
 ## ▶️ How to Run
 
