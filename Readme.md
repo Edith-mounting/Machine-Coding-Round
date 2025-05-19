@@ -16,9 +16,11 @@ This repository contains my solutions to various machine coding round problems c
 
 ## 📌 Problems & Solutions
 
-| #  | Problem Name           | Problem Statement                           | Folder Link           |
-|----|------------------------|---------------------------------------------|------------------------|
-| 1  | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board | [`Chess-Move-Validator`](./Chess) |
+| # | Problem Name                                                                                            | Problem Statement                           | Folder Link                       |
+|---|---------------------------------------------------------------------------------------------------------|---------------------------------------------|-----------------------------------|
+| 1 | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board | [`Design Chess Validator`](./Chess) |
+| 2 | [Trello](https://workat.tech/machine-coding/practice/trello-problem-t0nwwqt61buz)               | Create a project management application (like Trello) | [`Design Trello`](./Trello)       |
+
 
 ## ▶️ How to Run
 
