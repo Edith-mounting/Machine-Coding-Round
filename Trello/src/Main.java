@@ -19,7 +19,8 @@ public class Main {
 
             if( "SHOW".equals( commandType ) )
             {
-                doShowOperation( boardMap, listElementMap, cardMap, sc );
+                String result = doShowOperation( boardMap, listElementMap, cardMap, sc );
+                System.out.println( result );
             }
             else if ( "BOARD".equals( commandType ) )
             {
@@ -60,8 +61,9 @@ public class Main {
             if ( "UNASSIGN".equals( operation ) )
             {
                 card.setUser( null );
+                return;
             }
-            String nextOperation = sc.nextLine();
+            String nextOperation = sc.next();
             Card.updateCard( listElementMap, operation, nextOperation, card, cardId );
         }
     }
@@ -89,12 +91,17 @@ public class Main {
         }
     }
 
-    public static void doShowOperation(final Map<String, Board> boardMap,
-                                       final Map<String, ListElement> listElementMap,
-                                       final Map<String, Card> cardMap,
-                                       final Scanner sc) {
+    public static String doShowOperation(final Map<String, Board> boardMap,
+                                         final Map<String, ListElement> listElementMap,
+                                         final Map<String, Card> cardMap,
+                                         final Scanner sc)
+    {
         if ( !sc.hasNext() )
         {
+            if ( boardMap.isEmpty() )
+            {
+                return "";
+            }
             final StringBuilder boardListStringBuilder = new StringBuilder( "[" );
             for (Map.Entry<String, Board> boardEntry : boardMap.entrySet()) {
                 boardListStringBuilder.append( boardEntry.getValue().toString( boardMap, listElementMap, cardMap, boardEntry.getKey() ) );
@@ -103,29 +110,37 @@ public class Main {
             boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
             boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
             boardListStringBuilder.append( "]" );
-            System.out.println( boardListStringBuilder );
-            return;
+            return boardListStringBuilder.toString();
         }
         final String element = sc.next();
         final String id = sc.next();
-        String result;
         if ( "BOARD".equals( element ) )
         {
             final Board board = boardMap.get( id );
-            result = board.fetchAndCreateListElement( boardMap, listElementMap, cardMap, id );
+            if ( board==null )
+            {
+                return "";
+            }
+            return board.toString( boardMap, listElementMap, cardMap, id );
         }
         else if ( "LIST".equals( element ) )
         {
             final ListElement listElement = listElementMap.get( id );
-            result = listElement.fetchAndCreateCardList( listElementMap, cardMap, id );
+            if ( listElement==null )
+            {
+                return "";
+            }
+            return listElement.toString( listElementMap, cardMap, id );
         }
         else
         {
             final Card card = cardMap.get( id );
-            result = card.toString();
+            if ( card==null )
+            {
+                return "";
+            }
+            return card.toString();
         }
-
-        System.out.println( result );
     }
 
     public static void doBoardOperation(final Map<String, Board> boardMap,
@@ -145,7 +160,7 @@ public class Main {
             Board.removeBoard( boardMap, listElementMap, cardMap, id );
         }
         else {
-            String id = sc.next();
+            String id = operation;
             String nextOperation = sc.next();
             String updatedEntry = sc.next();
             Board.updateBoard( boardMap, id, nextOperation, updatedEntry );

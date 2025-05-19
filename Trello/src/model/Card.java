@@ -103,6 +103,7 @@ public class Card {
             if ( Objects.isNull( newListElement ) )
             {
                 System.out.println("Second List with " + nextOperation + " doesn't exist");
+                return;
             }
             ListElement listElement = listElementMap.get( card.getListElementId() );
             listElement.getCardIdList().remove( cardId );
@@ -118,7 +119,7 @@ public class Card {
                 "id: " + id +
                 ", name: '" + name + '\'' +
                 ", description: '" + description + '\'' +
-                ", user: " + user.getName() +
+                ", user: " + user +
                 '}';
     }
 }

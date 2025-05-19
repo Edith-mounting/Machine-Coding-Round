@@ -1,9 +1,6 @@
 package model;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ListElement {
     private String id = String.valueOf( UUID.randomUUID() );
@@ -14,6 +11,7 @@ public class ListElement {
     public ListElement(final String name, final String boardId) {
         this.name = name;
         this.boardId = boardId;
+        this.cardIdList = new ArrayList<>();
     }
 
     public String getBoardId() {
@@ -46,7 +44,7 @@ public class ListElement {
             System.out.println("Board " + boardId + " does not exist");
             return;
         }
-        final ListElement listElement = new ListElement( listName, board.getId() );
+        final ListElement listElement = new ListElement( listName, boardId );
         listElementMap.put( listElement.getId(), listElement );
         board.getListIds().add( listElement.getId() );
     }
@@ -81,6 +79,10 @@ public class ListElement {
                                          final Map<String, Card> cardMap,
                                          final String listElementId)
     {
+        if ( listElementMap.get( listElementId ).getCardIdList() == null || listElementMap.get( listElementId ).getCardIdList().isEmpty() )
+        {
+            return "";
+        }
         StringBuilder cardListStringBuilder = new StringBuilder( "[" );
         listElementMap.get( listElementId ).getCardIdList().forEach(
                 cardId -> {

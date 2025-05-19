@@ -1,20 +1,19 @@
 package model;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Board {
     private String id = String.valueOf( UUID.randomUUID() );
     private String name;
     private Privacy privacy = Privacy.PUBLIC;
-    private java.lang.String url;
+    private String url;
     private List<User> members;
     private List<String> listIds;
 
     public Board(final String name) {
         this.name = name;
+        this.members = new ArrayList<>();
+        this.listIds = new ArrayList<>();
     }
 
     public String getId() {
@@ -112,6 +111,10 @@ public class Board {
                                             final Map<String, Card> cardMap,
                                             final String boardId)
     {
+        if ( boardMap.get( boardId ).getListIds() == null || boardMap.get( boardId ).getListIds().isEmpty() )
+        {
+            return "";
+        }
         StringBuilder boardListStringBuilder = new StringBuilder( "[" );
         boardMap.get( boardId ).getListIds().forEach(
                 listElementId -> {
@@ -129,7 +132,7 @@ public class Board {
                            final Map<String, ListElement> listElementMap,
                            final Map<String, Card> cardMap,
                            final String boardId) {
-        return "Board{" +
+        return "{" +
                 "id: '" + id + '\'' +
                 ", name: '" + name + '\'' +
                 ", privacy: " + privacy +
