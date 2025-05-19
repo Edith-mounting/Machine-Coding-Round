@@ -107,15 +107,35 @@ public class Board {
         }
     }
 
-    @Override
-    public String toString() {
+    public String fetchAndCreateListElement(final Map<String, Board> boardMap,
+                                            final Map<String, ListElement> listElementMap,
+                                            final Map<String, Card> cardMap,
+                                            final String boardId)
+    {
+        StringBuilder boardListStringBuilder = new StringBuilder( "[" );
+        boardMap.get( boardId ).getListIds().forEach(
+                listElementId -> {
+                    boardListStringBuilder.append( listElementMap.get( listElementId ).toString( listElementMap, cardMap, listElementId ) );
+                    boardListStringBuilder.append(", ");
+                }
+        );
+        boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
+        boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
+        boardListStringBuilder.append( "]" );
+        return boardListStringBuilder.toString();
+    }
+
+    public String toString(final Map<String, Board> boardMap,
+                           final Map<String, ListElement> listElementMap,
+                           final Map<String, Card> cardMap,
+                           final String boardId) {
         return "Board{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", privacy=" + privacy +
-                ", url='" + url + '\'' +
-                ", members=" + members +
-                ", lists=" + listIds +
+                "id: '" + id + '\'' +
+                ", name: '" + name + '\'' +
+                ", privacy: " + privacy +
+                ", url: '" + url + '\'' +
+                ", members: " + members +
+                ", lists: " + fetchAndCreateListElement( boardMap, listElementMap, cardMap, boardId ) +
                 '}';
     }
 }

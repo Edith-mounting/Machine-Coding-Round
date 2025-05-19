@@ -19,11 +19,11 @@ public class Main {
 
             if( "SHOW".equals( commandType ) )
             {
-                doShowOperation( boardMap, sc );
+                doShowOperation( boardMap, listElementMap, cardMap, sc );
             }
             else if ( "BOARD".equals( commandType ) )
             {
-                doBoardOperation( boardMap, sc );
+                doBoardOperation( boardMap, listElementMap, cardMap, sc );
             }
             else if ( "LIST".equals( commandType ) )
             {
@@ -89,16 +89,43 @@ public class Main {
         }
     }
 
-    public static void doShowOperation(final Map<String, Board> boardMap, final Scanner sc) {
-        if ( !sc.hasNext() ) {
-            List<Board> boardList = new ArrayList<>();
-            for (Map.Entry<String, Board> entry : boardMap.entrySet()) {
-                boardList.add( entry.getValue() );
+    public static void doShowOperation(final Map<String, Board> boardMap,
+                                       final Map<String, ListElement> listElementMap,
+                                       final Map<String, Card> cardMap,
+                                       final Scanner sc) {
+        if ( !sc.hasNext() )
+        {
+            final StringBuilder boardListStringBuilder = new StringBuilder( "[" );
+            for (Map.Entry<String, Board> boardEntry : boardMap.entrySet()) {
+                boardListStringBuilder.append( boardEntry.getValue().toString( boardMap, listElementMap, cardMap, boardEntry.getKey() ) );
+                boardListStringBuilder.append( ", ");
             }
-            System.out.println( boardList );
+            boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
+            boardListStringBuilder.deleteCharAt( boardListStringBuilder.length() - 1 );
+            boardListStringBuilder.append( "]" );
+            System.out.println( boardListStringBuilder );
+            return;
         }
-        String element = sc.next();
-        String id = sc.next();
+        final String element = sc.next();
+        final String id = sc.next();
+        String result;
+        if ( "BOARD".equals( element ) )
+        {
+            final Board board = boardMap.get( id );
+            result = board.fetchAndCreateListElement( boardMap, listElementMap, cardMap, id );
+        }
+        else if ( "LIST".equals( element ) )
+        {
+            final ListElement listElement = listElementMap.get( id );
+            result = listElement.fetchAndCreateCardList( listElementMap, cardMap, id );
+        }
+        else
+        {
+            final Card card = cardMap.get( id );
+            result = card.toString();
+        }
+
+        System.out.println( result );
     }
 
     public static void doBoardOperation(final Map<String, Board> boardMap,

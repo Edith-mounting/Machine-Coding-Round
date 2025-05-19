@@ -114,11 +114,11 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
+        return "{" +
+                "id: " + id +
+                ", name: '" + name + '\'' +
+                ", description: '" + description + '\'' +
+                ", user: " + user.getName() +
                 '}';
     }
 }

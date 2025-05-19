@@ -77,12 +77,32 @@ public class ListElement {
         listElementMap.remove( listElementId );
     }
 
-    @Override
-    public String toString() {
-        return "List{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", cardList=" + cardIdList +
+    public String fetchAndCreateCardList(final Map<String, ListElement> listElementMap,
+                                         final Map<String, Card> cardMap,
+                                         final String listElementId)
+    {
+        StringBuilder cardListStringBuilder = new StringBuilder( "[" );
+        listElementMap.get( listElementId ).getCardIdList().forEach(
+                cardId -> {
+                    cardListStringBuilder.append( cardMap.get( cardId ).toString() );
+                    cardListStringBuilder.append(", ");
+                }
+        );
+        cardListStringBuilder.deleteCharAt( cardListStringBuilder.length() - 1 );
+        cardListStringBuilder.deleteCharAt( cardListStringBuilder.length() - 1 );
+        cardListStringBuilder.append( "]" );
+        return cardListStringBuilder.toString();
+    }
+
+
+    public String toString(final Map<String, ListElement> listElementMap,
+                           final Map<String, Card> cardMap,
+                           final String listElementId)
+    {
+        return "{" +
+                "id: " + id +
+                ", name: '" + name + '\'' +
+                ", cards: " + fetchAndCreateCardList(listElementMap, cardMap, listElementId) +
                 '}';
     }
 }
