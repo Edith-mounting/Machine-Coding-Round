@@ -2,9 +2,9 @@ import model.CountAndDataType;
 import model.Pair;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Redis
 {
@@ -13,8 +13,8 @@ public class Redis
 
     public Redis()
     {
-        this.dataStore = new HashMap<>();
-        this.attributeKeyCount = new HashMap<>();
+        this.dataStore = new ConcurrentHashMap<>();
+        this.attributeKeyCount = new ConcurrentHashMap<>();
     }
 
     public List<Pair> get(final String key)
