@@ -45,7 +45,8 @@ public class Redis
         // Check DataType first.
         for ( Pair attribute: listOfAttributes )
         {
-            if ( attribute.getValue().getClass() != attributeKeyCount.get( attribute.getKey() ).getType().getClass() )
+            CountAndDataType countAndDataType = attributeKeyCount.get( attribute.getKey() );
+            if ( countAndDataType!=null && countAndDataType.getType().getClass()!=attribute.getValue().getClass() )
             {
                 return false;
             }
@@ -54,21 +55,19 @@ public class Redis
         // Delete existing attributes.
         delete( key );
 
-        // Add the new pairs.
-        final List<Pair> attributes = new ArrayList<>();
+        // Add the new attribute keys in attributeKeyCount map.
         for ( Pair attribute: listOfAttributes )
         {
             // Check if the dataType already exist or not.
             CountAndDataType countAndDataType = attributeKeyCount.get( attribute.getKey() );
-            if ( countAndDataType==null ||  countAndDataType.getType().getClass()==attribute.getKey().getClass() )
+            if ( countAndDataType == null )
             {
-                attributes.add( attribute );
+                countAndDataType = new CountAndDataType( 0, attribute.getValue() );
             }
-            else {
-                System.out.println("Data Type Error");
-            }
+            countAndDataType.setCount( countAndDataType.getCount() + 1 );
+            attributeKeyCount.put( attribute.getKey(), countAndDataType );
         }
-        dataStore.put( key, attributes );
+        dataStore.put( key, listOfAttributes );
         return true;
     }
 

@@ -27,7 +27,7 @@ public class Main {
                 String line = scanner.nextLine();
                 List<String> list = Arrays.asList( line.split(" ") );
                 List<Pair> attributeList = new ArrayList<>();
-                for(int i = 0; i < list.size(); i+=2)
+                for(int i = 1; i < list.size(); i += 2)
                 {
                     attributeList.add( new Pair( list.get( i ), list.get( i + 1 ) ) );
                 }

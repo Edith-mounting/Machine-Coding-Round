@@ -63,10 +63,8 @@ public class Pair
         }
 
         // Boolean check
-        try {
+        if ( value.equalsIgnoreCase( "true" ) || value.equalsIgnoreCase( "false" ) ) {
             return Boolean.parseBoolean( value );
-        } catch ( Exception e ) {
-            // Catch exception;
         }
 
         return value;
