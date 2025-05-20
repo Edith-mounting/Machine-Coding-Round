@@ -16,10 +16,11 @@ This repository contains my solutions to various machine coding round problems c
 
 ## 📌 Problems & Solutions
 
-| # | Problem Name                                                                                            | Problem Statement                           | Folder Link                       |
-|---|---------------------------------------------------------------------------------------------------------|---------------------------------------------|-----------------------------------|
-| 1 | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board | [`Design Chess Validator`](./Chess) |
-| 2 | [Trello](https://workat.tech/machine-coding/practice/trello-problem-t0nwwqt61buz)               | Create a project management application (like Trello) | [`Design Trello`](./Trello)       |
+| # | Problem Name                                                                                            | Problem Statement                                     | Folder Link                         |
+|---|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-------------------------------------|
+| 1 | [Chess Move Validator](https://workat.tech/machine-coding/practice/design-chess-validator-to77d8oqpx2h) | Validates legal moves on a chess board                | [`Design Chess Validator`](./Chess) |
+| 2 | [Trello](https://workat.tech/machine-coding/practice/trello-problem-t0nwwqt61buz)                       | Create a project management application (like Trello) | [`Design Trello`](./Trello)         |
+| 3 | [Redis](https://workat.tech/machine-coding/practice/design-key-value-store-6gz6cq124k65)                | Design an In-Memory Key-Value Store like Redis        | [`Design Redis`](./Redis)           |
 
 
 ## ▶️ How to Run
